@@ -632,8 +632,8 @@ PAGES["en"]["datasets"] = {
               "<a href=\"/governance/\">governance</a> page."),
         ("chain", "en"),
         ("h2", "Verify before you trust it", "verify"),
-        ("code", "shell", "python install/mmrf.py verify-release --project-root .\n"
-                          "python install/mmrf.py doctor --project-root ."),
+        ("code", "shell", "python install/mmrf.py --project-root . verify-release\n"
+                          "python install/mmrf.py --project-root . doctor"),
         ("p", "The first checks the signed release manifest; the second walks all "
               f"{D['shard_count']} shards. Note the flag order — "
               f"{mono('--project-root')} belongs before the subcommand, not after it."),
@@ -705,8 +705,8 @@ PAGES["zh"]["datasets"] = {
               "<a href=\"/zh/governance/\">治理</a>頁。"),
         ("chain", "zh"),
         ("h2", "先驗證再信任", "verify"),
-        ("code", "shell", "python install/mmrf.py verify-release --project-root .\n"
-                          "python install/mmrf.py doctor --project-root ."),
+        ("code", "shell", "python install/mmrf.py --project-root . verify-release\n"
+                          "python install/mmrf.py --project-root . doctor"),
         ("p", "前者檢查簽章的發行清單；"
               f"後者走完全部 {D['shard_count']} 個分片。"
               f"注意旗標順序——{mono('--project-root')} "
@@ -1055,8 +1055,8 @@ PAGES["en"]["verification"] = {
         "right."),
     "blocks": [
         ("h2", "Release", "release"),
-        ("code", "shell", "python install/mmrf.py verify-release --project-root .\n"
-                          "python install/mmrf.py doctor --project-root ."),
+        ("code", "shell", "python install/mmrf.py --project-root . verify-release\n"
+                          "python install/mmrf.py --project-root . doctor"),
         ("p", f"The flag goes before the subcommand. {mono('--project-root')} is a "
               "top-level argument, so putting it after "
               f"{mono('verify-release')} fails to parse — worth knowing, because parts "
@@ -1068,6 +1068,34 @@ PAGES["en"]["verification"] = {
             ("stable manifest", mono("stable_data/stable_manifest_v1.0.json")),
             ("shards checked by doctor", str(D["shard_count"])),
         ]),
+        ("h2", "Expect valid: false, and read why", "expect"),
+        ("p", "Run against a clone of the runtime repository, "
+              f"{mono('verify-release')} reports {mono('valid: false')}. That is the "
+              "correct answer. The repository is the published package plus two "
+              "repaired files, and the check names them:"),
+        ("code", "json",
+         '{\n'
+         '  "valid": false,\n'
+         '  "checks": {\n'
+         '    "signature_and_document_hash": true,\n'
+         '    "schema_ok": true,\n'
+         '    "release_id_ok": true,\n'
+         '    "version_ok": true,\n'
+         '    "safety_ok": true,\n'
+         '    "payload_ok": false\n'
+         '  }\n'
+         '}\n'
+         '\n'
+         'hash_mismatch  lake/mmrf_data_lake.py\n'
+         'hash_mismatch  lake/mmrf_lake_cli.py'),
+        ("p", "The signature still verifies, and every safety and semantic check "
+              "passes. Only the payload hashes for the two repaired files differ, and "
+              "the repairs are described in "
+              f"<a href=\"{SITE['repo']}/blob/main/REPAIRS.md\" rel=\"noopener\">REPAIRS.md</a>. "
+              "To verify the release exactly as published, check out the import commit "
+              "— it is byte-identical to the package — and run it there."),
+        ("p", "The dataset is untouched either way. No shard byte changed, and the "
+              "stable manifest hash below is the one the release published."),
         ("h2", "Reproduce the manifest hash", "manifest"),
         ("p", "The manifest hash is not a hash of the file. It is the SHA-256 of the "
               "canonical JSON of the manifest object with the "
@@ -1146,8 +1174,8 @@ PAGES["zh"]["verification"] = {
         "以指令為準。"),
     "blocks": [
         ("h2", "發行版", "release"),
-        ("code", "shell", "python install/mmrf.py verify-release --project-root .\n"
-                          "python install/mmrf.py doctor --project-root ."),
+        ("code", "shell", "python install/mmrf.py --project-root . verify-release\n"
+                          "python install/mmrf.py --project-root . doctor"),
         ("p", f"旗標放在子指令之前。{mono('--project-root')} "
               "是頂層參數，所以把它放在 "
               f"{mono('verify-release')} 之後會解析失敗"
@@ -1160,6 +1188,41 @@ PAGES["zh"]["verification"] = {
             ("穩定清單", mono("stable_data/stable_manifest_v1.0.json")),
             ("doctor 檢查的分片", str(D["shard_count"])),
         ]),
+        ("h2", "預期會看到 valid: false，並讀懂原因", "expect"),
+        ("p", "對著 runtime 儲存庫的 clone 執行，"
+              f"{mono('verify-release')} 會回報 "
+              f"{mono('valid: false')}。這是正確的答案。"
+              "這個儲存庫是已發布的包加上兩個"
+              "被修復的檔案，而檢查把它們"
+              "指名出來："),
+        ("code", "json",
+         '{\n'
+         '  "valid": false,\n'
+         '  "checks": {\n'
+         '    "signature_and_document_hash": true,\n'
+         '    "schema_ok": true,\n'
+         '    "release_id_ok": true,\n'
+         '    "version_ok": true,\n'
+         '    "safety_ok": true,\n'
+         '    "payload_ok": false\n'
+         '  }\n'
+         '}\n'
+         '\n'
+         'hash_mismatch  lake/mmrf_data_lake.py\n'
+         'hash_mismatch  lake/mmrf_lake_cli.py'),
+        ("p", "簽章依然通過驗證，所有安全與"
+              "語意檢查也都通過。只有那兩個"
+              "被修復檔案的 payload 雜湊不同，"
+              "而修復內容記在 "
+              f"<a href=\"{SITE['repo']}/blob/main/REPAIRS.md\" rel=\"noopener\">REPAIRS.md</a>。"
+              "若要驗證與發布時完全一致的"
+              "版本，請 checkout 匯入 commit"
+              "——它與發行包逐位元相同"
+              "——並在那裡執行。"),
+        ("p", "無論如何資料集都沒有被動過。"
+              "沒有任何分片位元組改變，"
+              "下方的穩定清單雜湊就是"
+              "發行時公布的那一個。"),
         ("h2", "重現清單雜湊", "manifest"),
         ("p", "清單雜湊不是檔案的雜湊。"
               "它是清單物件移除 "
@@ -1392,7 +1455,7 @@ PAGES["en"]["documentation"] = {
          "git clone https://github.com/kakon77777-commits/mmrf-runtime.git\n"
          "cd mmrf-runtime\n"
          "python -m pip install numpy\n"
-         "python install/mmrf.py doctor --project-root .\n"
+         "python install/mmrf.py --project-root . doctor\n"
          "python workflows/stable_baseline.py --project-root ."),
         ("p", "NumPy is the only dependency. There is no server to run and no network "
               "access at any point."),
@@ -1469,7 +1532,7 @@ PAGES["zh"]["documentation"] = {
          "git clone https://github.com/kakon77777-commits/mmrf-runtime.git\n"
          "cd mmrf-runtime\n"
          "python -m pip install numpy\n"
-         "python install/mmrf.py doctor --project-root .\n"
+         "python install/mmrf.py --project-root . doctor\n"
          "python workflows/stable_baseline.py --project-root ."),
         ("p", "NumPy 是唯一的相依套件。"
               "沒有伺服器要跑，"
