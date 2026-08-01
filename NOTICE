@@ -1,0 +1,14 @@
+mmrf.evemisslab.com
+Copyright 2026 EVEMISS Technology Co., Ltd.
+
+The generator and source text for the MMRF documentation site. No figure on the
+site is typed in by hand: sync_facts.py reads the runtime's own artifacts and
+refuses to write if any of them fails its own hash check, so a stale number
+cannot survive a build.
+
+The site publishes aggregate statistics only. It exposes no input surface, no
+target-conditioned query, and no path by which permitted operations compose into
+a forbidden one.
+
+The Apache-2.0 license does not grant rights to imply endorsement by EVEMISS
+Technology or EveMissLab.

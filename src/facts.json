@@ -1,0 +1,464 @@
+{
+  "release_id": "MMRF-1.0.0",
+  "dataset": {
+    "dataset_id": "mmrf-public-prime-lake",
+    "generation": 2,
+    "schema_version": "1.0",
+    "prime_count": 148933,
+    "shard_count": 20,
+    "limit_exclusive": 2000000,
+    "columns": [
+      "prime",
+      "ordinal",
+      "bit_length",
+      "decimal_digits",
+      "previous_gap",
+      "residue_6",
+      "residue_30",
+      "residue_210",
+      "family_flags",
+      "wheel30_class"
+    ],
+    "manifest_sha256": "a5caea22a57efaac915c00dd92c655b1126e0b6d9b2b93790e48bc167733e0d1"
+  },
+  "baseline": {
+    "schema": "mmrf-stable-baseline-1.0",
+    "workflow_id": "stable-baseline",
+    "workflow_version": "1.0.0",
+    "dataset_id": "mmrf-public-prime-lake",
+    "generation": 2,
+    "stable_manifest_sha256": "a5caea22a57efaac915c00dd92c655b1126e0b6d9b2b93790e48bc167733e0d1",
+    "range": {
+      "start": 0,
+      "end_exclusive": 2000000
+    },
+    "shard_count": 20,
+    "interval_density": {
+      "prime_count": 148933,
+      "width": 2000000,
+      "density": 0.0744665
+    },
+    "gap_quantiles": {
+      "sample_size": 148932,
+      "max_gap": 132,
+      "mean_gap": 13.428887008836247,
+      "quantiles": {
+        "0.5": 10.0,
+        "0.9": 28.0,
+        "0.99": 52.0
+      }
+    },
+    "gap_histogram": {
+      "1": 1,
+      "2": 14871,
+      "4": 14741,
+      "6": 24531,
+      "8": 10280,
+      "10": 12967,
+      "12": 15141,
+      "14": 7941,
+      "16": 5550,
+      "18": 9559,
+      "20": 4581,
+      "22": 4169,
+      "24": 5522,
+      "26": 2434,
+      "28": 2559,
+      "30": 4019,
+      "32": 1149,
+      "34": 1220,
+      "36": 1726,
+      "38": 733,
+      "40": 905,
+      "42": 1105,
+      "44": 438,
+      "46": 350,
+      "48": 497,
+      "50": 267,
+      "52": 194,
+      "54": 344,
+      "56": 158,
+      "58": 162,
+      "60": 213,
+      "62": 58,
+      "64": 74,
+      "66": 116,
+      "68": 34,
+      "70": 62,
+      "72": 49,
+      "74": 20,
+      "76": 19,
+      "78": 51,
+      "80": 25,
+      "82": 16,
+      "84": 23,
+      "86": 7,
+      "88": 5,
+      "90": 12,
+      "92": 4,
+      "94": 2,
+      "96": 6,
+      "98": 2,
+      "100": 5,
+      "102": 3,
+      "104": 2,
+      "106": 1,
+      "110": 1,
+      "112": 1,
+      "114": 1,
+      "118": 1,
+      "120": 1,
+      "126": 2,
+      "132": 2
+    },
+    "residue_distribution": {
+      "6": {
+        "1": 74412,
+        "2": 1,
+        "3": 1,
+        "5": 74519
+      },
+      "30": {
+        "1": 18540,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "7": 18625,
+        "11": 18648,
+        "13": 18654,
+        "17": 18642,
+        "19": 18593,
+        "23": 18601,
+        "29": 18627
+      },
+      "210": {
+        "1": 3096,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "7": 1,
+        "11": 3138,
+        "13": 3109,
+        "17": 3095,
+        "19": 3133,
+        "23": 3089,
+        "29": 3093,
+        "31": 3118,
+        "37": 3092,
+        "41": 3090,
+        "43": 3111,
+        "47": 3119,
+        "53": 3087,
+        "59": 3123,
+        "61": 3090,
+        "67": 3125,
+        "71": 3108,
+        "73": 3117,
+        "79": 3097,
+        "83": 3113,
+        "89": 3102,
+        "97": 3133,
+        "101": 3112,
+        "103": 3095,
+        "107": 3122,
+        "109": 3083,
+        "113": 3100,
+        "121": 3081,
+        "127": 3074,
+        "131": 3087,
+        "137": 3116,
+        "139": 3104,
+        "143": 3098,
+        "149": 3124,
+        "151": 3064,
+        "157": 3117,
+        "163": 3092,
+        "167": 3077,
+        "169": 3097,
+        "173": 3114,
+        "179": 3088,
+        "181": 3091,
+        "187": 3083,
+        "191": 3113,
+        "193": 3130,
+        "197": 3113,
+        "199": 3079,
+        "209": 3097
+      }
+    },
+    "wheel30_class_distribution": {
+      "0": 18540,
+      "1": 18625,
+      "2": 18648,
+      "3": 18654,
+      "4": 18642,
+      "5": 18593,
+      "6": 18601,
+      "7": 18627,
+      "255": 3
+    },
+    "magnitude_bands": [
+      {
+        "decimal_digits": 1,
+        "range_start": 0,
+        "range_end_exclusive": 10,
+        "prime_count": 4,
+        "density": 0.4
+      },
+      {
+        "decimal_digits": 2,
+        "range_start": 10,
+        "range_end_exclusive": 100,
+        "prime_count": 21,
+        "density": 0.23333333333333334
+      },
+      {
+        "decimal_digits": 3,
+        "range_start": 100,
+        "range_end_exclusive": 1000,
+        "prime_count": 143,
+        "density": 0.15888888888888889
+      },
+      {
+        "decimal_digits": 4,
+        "range_start": 1000,
+        "range_end_exclusive": 10000,
+        "prime_count": 1061,
+        "density": 0.11788888888888889
+      },
+      {
+        "decimal_digits": 5,
+        "range_start": 10000,
+        "range_end_exclusive": 100000,
+        "prime_count": 8363,
+        "density": 0.09292222222222223
+      },
+      {
+        "decimal_digits": 6,
+        "range_start": 100000,
+        "range_end_exclusive": 1000000,
+        "prime_count": 68906,
+        "density": 0.07656222222222223
+      },
+      {
+        "decimal_digits": 7,
+        "range_start": 1000000,
+        "range_end_exclusive": 2000000,
+        "prime_count": 70435,
+        "density": 0.070435
+      }
+    ],
+    "family_counts": {
+      "twin_prime": 14871,
+      "cousin_prime": 14742,
+      "sexy_prime": 29419,
+      "safe_prime": 7746
+    },
+    "family_counting_note": "Each pair family is counted at its larger observed member, which keeps prior shards immutable during append.",
+    "environment": {
+      "python": "3.14.5",
+      "numpy": "2.5.1",
+      "platform": "Windows"
+    },
+    "safety": {
+      "aggregate_only": true,
+      "target_conditioned_queries": false,
+      "factor_candidates_emitted": false,
+      "range_narrowing_emitted": false
+    },
+    "output_sha256": "5b93e5f26256e16f6290cea957df45aaf78de672ca0e80bf17ef2419b4d50ac3"
+  },
+  "workflow": {
+    "shipped": {
+      "schema": "mmrf-scientific-workflow-0.8",
+      "workflow_id": "prime-distribution-baseline",
+      "description": "Replayable aggregate study over the first 2,000,000 integers.",
+      "steps": [
+        {
+          "step_id": "density",
+          "query": {
+            "operation": "interval_density",
+            "shard_start": 0,
+            "shard_count": 20
+          }
+        },
+        {
+          "step_id": "gap_quantiles",
+          "query": {
+            "operation": "gap_quantiles",
+            "shard_start": 0,
+            "shard_count": 20,
+            "quantiles": [
+              0.5,
+              0.9,
+              0.99
+            ]
+          }
+        },
+        {
+          "step_id": "residue_mod30",
+          "query": {
+            "operation": "residue_distribution",
+            "shard_start": 0,
+            "shard_count": 20,
+            "modulo": 30
+          }
+        },
+        {
+          "step_id": "families",
+          "query": {
+            "operation": "family_counts",
+            "shard_start": 0,
+            "shard_count": 20
+          }
+        }
+      ]
+    },
+    "stable_baseline_sha256": "36f765220749b287cde604bbff48b2c1b31e1c212855afeac3c10498bfd22569",
+    "output_sha256": "5b93e5f26256e16f6290cea957df45aaf78de672ca0e80bf17ef2419b4d50ac3"
+  },
+  "governance": {
+    "proposal": {
+      "proposal_id": "proposal:mmrf-schema-v09",
+      "purpose": "Add a public derived wheel30_class column while preserving L0-only safety and full shard provenance.",
+      "safety": {
+        "classification": "L0_PUBLIC_MATH",
+        "source_factor_relations": false,
+        "rsa_target_endpoint": false,
+        "factor_candidate_endpoint": false,
+        "range_narrowing_endpoint": false,
+        "exact_prime_list_endpoint": false,
+        "raw_factor_export": false
+      },
+      "migration_profile": "MMRF-SCHEMA-0.8-TO-0.9",
+      "candidate_manifest_sha256": "73015c5329ae71900ef3f4aca7f35152f3d96a435e65e3bddbd1ae513d597420",
+      "base_manifest_sha256": "85a884be5c88359357852619ffe9d46e5a315db16940815840b456d9621f9c17",
+      "sha256": "2bb5d20ee32708de87b0462fb48173c90caf80c1024bcdf012229c4dc2ca2c6d"
+    },
+    "reviews": [
+      {
+        "reviewer_id": "reviewer_math",
+        "decision": "APPROVE",
+        "findings": [
+          "wheel30_class is a deterministic function of residue_30",
+          "logical content CIDs replay identically"
+        ],
+        "document_sha256": "726e3dfa89eb113915f965d1ef41ad0ddf4fc4cb0210f3afb9359bd395e62ebc"
+      },
+      {
+        "reviewer_id": "reviewer_security",
+        "decision": "APPROVE",
+        "findings": [
+          "no source-factor relations",
+          "all cryptanalytic endpoints remain disabled"
+        ],
+        "document_sha256": "492e3eaf3053e2a817b09b28ce3f53d1b5420dbe553c054391ba7a8d962db9d1"
+      }
+    ],
+    "receipt": {
+      "promotion_id": "promotion:d382373c-b8c2-4ea9-9f6e-cb8b2762ff5f",
+      "approval_count": 2,
+      "approval_threshold": 2,
+      "promoted_at": "2026-07-29T13:59:44.009729+00:00",
+      "receipt_sha256": "6ad7c85305f45cef095f72eb55ae9f097d9a70388615e5f609fbb83f024c0658"
+    },
+    "provenance_nodes": [
+      {
+        "node_id": "manifest:v08",
+        "node_type": "DATASET_MANIFEST",
+        "content_sha256": "85a884be5c88359357852619ffe9d46e5a315db16940815840b456d9621f9c17"
+      },
+      {
+        "node_id": "manifest:v09",
+        "node_type": "DATASET_MANIFEST",
+        "content_sha256": "73015c5329ae71900ef3f4aca7f35152f3d96a435e65e3bddbd1ae513d597420"
+      },
+      {
+        "node_id": "migration:08-to-09",
+        "node_type": "SCHEMA_MIGRATION",
+        "content_sha256": "14c5f7d50852313a2a61e90f7682ecf5b0a0d3a5bdf6fb82f324a6ab2ff2533a"
+      },
+      {
+        "node_id": "promotion:v09",
+        "node_type": "PROMOTION_RECEIPT",
+        "content_sha256": "6ad7c85305f45cef095f72eb55ae9f097d9a70388615e5f609fbb83f024c0658"
+      },
+      {
+        "node_id": "proposal:v09",
+        "node_type": "DATASET_PROPOSAL",
+        "content_sha256": "2bb5d20ee32708de87b0462fb48173c90caf80c1024bcdf012229c4dc2ca2c6d"
+      },
+      {
+        "node_id": "review:math",
+        "node_type": "DATASET_REVIEW",
+        "content_sha256": "726e3dfa89eb113915f965d1ef41ad0ddf4fc4cb0210f3afb9359bd395e62ebc"
+      },
+      {
+        "node_id": "review:security",
+        "node_type": "DATASET_REVIEW",
+        "content_sha256": "492e3eaf3053e2a817b09b28ce3f53d1b5420dbe553c054391ba7a8d962db9d1"
+      },
+      {
+        "node_id": "workflow:v08-baseline",
+        "node_type": "WORKFLOW_RUN",
+        "content_sha256": "e872be3d0627da0aaeeed8c890c3c05126c8aafa30921a58eff80a72b0e24a44"
+      }
+    ],
+    "provenance_edges": [
+      {
+        "source": "manifest:v08",
+        "target": "migration:08-to-09",
+        "relation": "INPUT_TO"
+      },
+      {
+        "source": "manifest:v08",
+        "target": "workflow:v08-baseline",
+        "relation": "EXECUTED_AS"
+      },
+      {
+        "source": "manifest:v09",
+        "target": "proposal:v09",
+        "relation": "PROPOSED_AS"
+      },
+      {
+        "source": "migration:08-to-09",
+        "target": "manifest:v09",
+        "relation": "PRODUCED"
+      },
+      {
+        "source": "proposal:v09",
+        "target": "review:math",
+        "relation": "REVIEWED_BY"
+      },
+      {
+        "source": "proposal:v09",
+        "target": "review:security",
+        "relation": "REVIEWED_BY"
+      },
+      {
+        "source": "review:math",
+        "target": "promotion:v09",
+        "relation": "AUTHORIZED"
+      },
+      {
+        "source": "review:security",
+        "target": "promotion:v09",
+        "relation": "AUTHORIZED"
+      }
+    ]
+  },
+  "citation": {
+    "schema": "mmrf-dataset-citation-0.9",
+    "citation_id": "MMRF-DATASET-73015C5329AE7190",
+    "title": "MMRF Public Prime Lake Schema 0.9",
+    "publisher": "EveMissLab Technology Co., Ltd.",
+    "dataset_id": "mmrf-public-prime-lake",
+    "schema_version": "0.9",
+    "manifest_sha256": "73015c5329ae71900ef3f4aca7f35152f3d96a435e65e3bddbd1ae513d597420",
+    "promotion_receipt_sha256": "6ad7c85305f45cef095f72eb55ae9f097d9a70388615e5f609fbb83f024c0658",
+    "provenance_graph_sha256": "ffb6dd8d5f7e5e54a559d38a09e1262933e5898f7151627174836624448fd238",
+    "issued_at": "2026-07-29T13:59:44.023374+00:00",
+    "preferred_citation": "EveMissLab Technology Co., Ltd.. MMRF Public Prime Lake Schema 0.9. MMRF dataset MMRF-DATASET-73015C5329AE7190; manifest 73015c5329ae71900ef3f4aca7f35152f3d96a435e65e3bddbd1ae513d597420.",
+    "citation_sha256": "c8b87bbc7a1dde104a202d613c275650be7caa482e9f3d6ad3ca93a3f3e83146"
+  }
+}

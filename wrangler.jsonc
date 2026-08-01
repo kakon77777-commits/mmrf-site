@@ -1,0 +1,22 @@
+// MMRF v1.0 site — assets-only Worker on its own evemisslab.com subdomain.
+// Same pattern as mmr / mmlc / mlf / mmpf: a Worker custom domain provisions
+// its own DNS record, which a Pages custom domain does not.
+//
+//   python sync_facts.py
+//   python build.py
+//   npx wrangler deploy
+{
+  "name": "mmrf-site",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "mmrf.evemisslab.com", "custom_domain": true }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
