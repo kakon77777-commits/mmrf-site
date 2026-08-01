@@ -34,7 +34,21 @@ OUT_SHA = B["output_sha256"]
 WF_SHA = F["workflow"]["stable_baseline_sha256"]
 
 SLUGS = ["", "research", "datasets", "workflows", "governance",
-         "verification", "documentation", "safety", "about"]
+         "verification", "documentation", "safety", "about", "reports"]
+
+# Public metadata only. The report body lives in public_reports/ and must not
+# contain controlled, private, target-conditioned, or internal operational data.
+DAILY_REPORTS = [
+    {
+        "date": "2026-08-01",
+        "year": 2026,
+        "month": 8,
+        "day": 1,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Manual daily run", "zh": "人工日更試跑"},
+        "download": "/reports/2026/08/01.md",
+    },
+]
 
 
 def n(value):
@@ -137,7 +151,7 @@ CHROME = {
         "nav": [("", "Home"), ("research", "Research"), ("datasets", "Datasets"),
                 ("workflows", "Workflows"), ("governance", "Governance"),
                 ("verification", "Verification"), ("documentation", "Documentation"),
-                ("safety", "Safety"), ("about", "About")],
+                ("safety", "Safety"), ("about", "About"), ("reports", "Daily reports")],
         "skip": "Skip to content",
         "on_this_page": "On this page",
         "theme": "Switch colour scheme",
@@ -161,7 +175,7 @@ CHROME = {
                 ("datasets", "資料集"), ("workflows", "工作流"),
                 ("governance", "治理"), ("verification", "驗證"),
                 ("documentation", "文件"), ("safety", "安全"),
-                ("about", "關於")],
+                ("about", "關於"), ("reports", "每日更新")],
         "skip": "跳至內容",
         "on_this_page": "本頁內容",
         "theme": "切換配色",
@@ -1736,5 +1750,34 @@ PAGES["zh"]["about"] = {
         ("p", "三項都沒有改動任何一個"
               "分片位元組，穩定清單雜湊"
               "與發行時公布的完全相同。"),
+    ],
+}
+
+# ---------------------------------------------------------------- Daily reports
+PAGES["en"]["reports"] = {
+    "title": "Daily reports",
+    "display": "A short public log.",
+    "meta_title": "Daily reports — MMRF",
+    "description": (
+        "Public daily update reports for MMRF. The page shows dates and downloads; "
+        "sensitive data is not published."),
+    "standfirst": (
+        "One card per public update. The report itself is in the download."),
+    "blocks": [
+        ("h2", "Public entries", "entries"),
+        ("reports",),
+    ],
+}
+
+PAGES["zh"]["reports"] = {
+    "title": "每日更新",
+    "display": "公開更新日報。",
+    "meta_title": "每日更新日報 — MMRF",
+    "description": (
+        "MMRF 的公開每日更新日報。頁面只顯示日期與下載，敏感資料不公開。"),
+    "standfirst": "每張卡片代表一次公開更新；日報內容放在下載檔中。",
+    "blocks": [
+        ("h2", "公開條目", "entries"),
+        ("reports",),
     ],
 }

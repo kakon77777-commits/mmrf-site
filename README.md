@@ -34,7 +34,15 @@ told different things:
 - `/governance/proposals.json`
 - `/citations/index.json`
 - `/results/stable-baseline.json`
+- `/reports/index.json`
 - `/llms.txt`, `/agents.md`
+
+## Public daily reports
+
+The `/reports/` page lists public-safe update entries by year, month and day.
+The page contains only metadata; each report body is a downloadable file under
+`public_reports/`. Sensitive, controlled, private and internal operational data
+must not be placed in that directory.
 
 ## Licence
 

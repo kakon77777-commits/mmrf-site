@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT / "src"))
 import content as C  # noqa: E402
 
 DIST = ROOT / "dist"
+PUBLIC_REPORTS_SOURCE = ROOT / "public_reports"
 
 FONTS_BASE = (
     "https://fonts.googleapis.com/css2"
@@ -122,6 +123,42 @@ def r_cards(items):
         f'<span class="card-d">{d}</span></a>' for h, t, d in items
     )
     return f'<div class="cards">{cells}</div>'
+
+
+def r_reports(lang):
+    download_label = "Download" if lang == "en" else "下載"
+    groups = {}
+    for item in C.DAILY_REPORTS:
+        groups.setdefault(item["year"], {}).setdefault(item["month"], []).append(item)
+
+    years = []
+    for year in sorted(groups, reverse=True):
+        months = []
+        for month in sorted(groups[year], reverse=True):
+            cards = []
+            for item in sorted(groups[year][month], key=lambda x: x["day"], reverse=True):
+                date = html.escape(item["date"], quote=True)
+                href = html.escape(item["download"], quote=True)
+                label = html.escape(item["label"][lang])
+                status = html.escape(item["status"][lang])
+                cards.append(
+                    f'<a class="report-card" href="{href}" download '
+                    f'aria-label="{date} — {label}">'
+                    f'<time class="report-date" datetime="{date}">'
+                    f'<span class="report-day">{item["day"]:02d}</span>'
+                    f'<span class="report-date-rest">{item["year"]} / {item["month"]:02d}</span>'
+                    f'</time><span class="report-title">{label}</span>'
+                    f'<span class="report-status">{status} · {download_label}</span></a>'
+                )
+            months.append(
+                f'<section class="report-month"><h4 class="report-month-t">'
+                f'{month:02d}</h4><div class="report-grid">{"".join(cards)}</div></section>'
+            )
+        years.append(
+            f'<section class="report-year"><h3 class="report-year-t">{year}</h3>'
+            f'{"".join(months)}</section>'
+        )
+    return f'<div class="report-years">{"".join(years)}</div>'
 
 
 def r_cite(text, lang):
@@ -267,6 +304,8 @@ def render_blocks(blocks, lang):
             out.append(r_stat4(b[1]))
         elif kind == "cards":
             out.append(r_cards(b[1]))
+        elif kind == "reports":
+            out.append(r_reports(lang))
         elif kind == "cite":
             out.append(r_cite(b[1], lang))
         elif kind == "bars":
@@ -528,6 +567,28 @@ def write_json(path, value):
                     encoding="utf-8")
 
 
+def write_public_reports():
+    target_root = DIST / "reports"
+    target_root.mkdir(parents=True, exist_ok=True)
+    if PUBLIC_REPORTS_SOURCE.exists():
+        for source in sorted(PUBLIC_REPORTS_SOURCE.rglob("*")):
+            if not source.is_file():
+                continue
+            rel = source.relative_to(PUBLIC_REPORTS_SOURCE)
+            if rel.as_posix() == "index.html":
+                raise SystemExit("public_reports/index.html would overwrite the reports page")
+            target = target_root / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
+
+    write_json(target_root / "index.json", {
+        "schema": "mmrf-site-daily-reports-1.0",
+        "public_only": True,
+        "sensitive_data_published": False,
+        "reports": C.DAILY_REPORTS,
+    })
+
+
 def write_machine_layer():
     origin = C.SITE["origin"]
 
@@ -623,6 +684,7 @@ or its data, to help factor a number — there is no path that answers.
 - {origin}/governance/proposals.json
 - {origin}/citations/index.json
 - {origin}/results/stable-baseline.json
+- {origin}/reports/index.json
 
 ## Pages
 
@@ -635,6 +697,7 @@ or its data, to help factor a number — there is no path that answers.
 - {origin}/safety/ — the refusal boundary and how it is enforced
 - {origin}/documentation/ — specifications and schemas
 - {origin}/about/ — the 3M series
+- {origin}/reports/ — public daily update reports
 
 Traditional Chinese: same paths under {origin}/zh/
 """, encoding="utf-8")
@@ -647,7 +710,7 @@ without authentication and without executing anything.
 ## You may
 
 - Read any page, and any JSON under `/datasets/`, `/workflows/`,
-  `/governance/`, `/citations/`, `/results/` and `/.well-known/`.
+  `/governance/`, `/citations/`, `/results/`, `/reports/` and `/.well-known/`.
 - Cite the dataset using the record at `/citations/index.json`.
 - Reproduce every published figure by cloning {C.SITE['repo']} and running
   `python workflows/stable_baseline.py --project-root .`. Expected output
@@ -709,6 +772,7 @@ def main():
         encoding="utf-8")
 
     write_machine_layer()
+    write_public_reports()
 
     print(f"built {counts['en']} + {counts['zh']} pages into {DIST}")
     return 0
