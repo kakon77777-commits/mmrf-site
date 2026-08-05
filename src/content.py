@@ -46,7 +46,7 @@ DAILY_REPORTS = [
         "day": 5,
         "status": {"en": "Complete", "zh": "完成"},
         "label": {"en": "Prime expansion relay", "zh": "質數擴展接力"},
-        "download": "/reports/2026/08/05.md",
+        "download": "/reports/2026/08/05.md?v=20260805",
     },
     {
         "date": "2026-08-04",
@@ -55,7 +55,7 @@ DAILY_REPORTS = [
         "day": 4,
         "status": {"en": "Complete", "zh": "完成"},
         "label": {"en": "Prime expansion relay", "zh": "質數擴展接力"},
-        "download": "/reports/2026/08/04.md",
+        "download": "/reports/2026/08/04.md?v=20260805",
     },
     {
         "date": "2026-08-03",
