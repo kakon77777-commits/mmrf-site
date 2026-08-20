@@ -26,7 +26,7 @@ SITE = {
     "version": "v1.0",
     "release_id": F["release_id"],
     "licence": "Apache-2.0",
-    "updated": "2026-08-14",
+    "updated": "2026-08-20",
 }
 
 MANIFEST = D["manifest_sha256"]
@@ -39,6 +39,60 @@ SLUGS = ["", "research", "datasets", "workflows", "governance",
 # Public metadata only. The report body lives in public_reports/ and must not
 # contain controlled, private, target-conditioned, or internal operational data.
 DAILY_REPORTS = [
+    {
+        "date": "2026-08-20",
+        "year": 2026,
+        "month": 8,
+        "day": 20,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Catch-up prime relay", "zh": "回補質數接力"},
+        "download": "/reports/2026/08/20.md?fresh=20260820c",
+    },
+    {
+        "date": "2026-08-19",
+        "year": 2026,
+        "month": 8,
+        "day": 19,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Catch-up prime relay", "zh": "回補質數接力"},
+        "download": "/reports/2026/08/19.md?fresh=20260820c",
+    },
+    {
+        "date": "2026-08-18",
+        "year": 2026,
+        "month": 8,
+        "day": 18,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Catch-up prime relay", "zh": "回補質數接力"},
+        "download": "/reports/2026/08/18.md?fresh=20260820c",
+    },
+    {
+        "date": "2026-08-17",
+        "year": 2026,
+        "month": 8,
+        "day": 17,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Catch-up prime relay", "zh": "回補質數接力"},
+        "download": "/reports/2026/08/17.md?fresh=20260820c",
+    },
+    {
+        "date": "2026-08-16",
+        "year": 2026,
+        "month": 8,
+        "day": 16,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Catch-up prime relay", "zh": "回補質數接力"},
+        "download": "/reports/2026/08/16.md?fresh=20260820c",
+    },
+    {
+        "date": "2026-08-15",
+        "year": 2026,
+        "month": 8,
+        "day": 15,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Catch-up prime relay", "zh": "回補質數接力"},
+        "download": "/reports/2026/08/15.md?fresh=20260820c",
+    },
     {
         "date": "2026-08-14",
         "year": 2026,
