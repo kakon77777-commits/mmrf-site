@@ -26,7 +26,7 @@ SITE = {
     "version": "v1.0",
     "release_id": F["release_id"],
     "licence": "Apache-2.0",
-    "updated": "2026-08-24",
+    "updated": "2026-08-25",
 }
 
 MANIFEST = D["manifest_sha256"]
@@ -39,6 +39,15 @@ SLUGS = ["", "research", "datasets", "workflows", "governance",
 # Public metadata only. The report body lives in public_reports/ and must not
 # contain controlled, private, target-conditioned, or internal operational data.
 DAILY_REPORTS = [
+    {
+        "date": "2026-08-25",
+        "year": 2026,
+        "month": 8,
+        "day": 25,
+        "status": {"en": "Complete", "zh": "完成"},
+        "label": {"en": "Prime expansion relay", "zh": "質數擴展接力"},
+        "download": "/reports/2026/08/25.md?fresh=20260825c",
+    },
     {
         "date": "2026-08-24",
         "year": 2026,
